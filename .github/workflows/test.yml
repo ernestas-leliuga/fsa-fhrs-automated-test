@@ -16,7 +16,7 @@ jobs:
         - name: Check out code
           uses: actions/checkout@v2.5.0
           with:
-            ref: test
+            ref: main
         - name: Write to file
           run: echo "some data for the file" >> test.txt
 
