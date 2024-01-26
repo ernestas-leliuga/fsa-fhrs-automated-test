@@ -1,9 +1,0 @@
-﻿.env
-/.vs
-node_modules
-*.env.json
-**/~$*
-cypress/fixtures/uploads_temp.json
-cypress/videos
-cypress/screenshots
-.state
