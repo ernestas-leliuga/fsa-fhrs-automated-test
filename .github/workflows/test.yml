@@ -12,19 +12,9 @@ jobs:
     environment:
       name: github-pages
     runs-on: ubuntu-latest
-    steps:
-        - name: Check out code
-          uses: actions/checkout@v2.5.0
-          with:
-            ref: test
-
-        - name: Initialize mandatory git config
-          run: |
-           git config user.name "GitHub Actions"
-           git config user.email noreply@github.com
-           
+    steps:           
         - name: Write to file
-          run: echo "some data for the file" >> test.txt
+          run: echo "some data for the file" >> /github/workspace/test.txt
 
         - name: Add test.txt file
           run: git add test.txt
