@@ -13,10 +13,8 @@ jobs:
     environment:
       name: github-pages
     runs-on: ubuntu-latest
-    steps: 
-        - name: Download math result for job 1
-          uses: actions/download-artifact@v4
-          with:
-            name: test.txt
-        - name: Read file
-          run: echo "$(<test.txt )"
+    steps:
+    - uses: actions/checkout@v2
+    - uses: jorgebg/stateful-action@v0.1
+    - name: Test Run
+      run: echo $(date)\n >> .state/data.txt
