@@ -13,24 +13,11 @@ jobs:
       name: github-pages
     runs-on: ubuntu-latest
     steps:        
-        - name: ls
-          run: ls
-        - name: cd
-          run: cd /
-        - name: ls
-          run: ls
-        - name: cd
-          run: cd /github
-        - name: ls
-          run: ls
         - name: Write to file
-          run: echo "some data for the file" >> /github/workspace/test.txt
-
-        - name: Add test.txt file
-          run: git add test.txt
-
-        - name: Commit changes
-          run: git commit --message "add text to test.txt"
-
-        - name: Push branch
-          run: git push origin test
+          run: echo "some data for the file" >> test.txt
+        - name: Upload math result for job 1
+          uses: actions/upload-artifact@v4
+          with:
+            name: test.txt
+            path: test.txt
+        
