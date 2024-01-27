@@ -39,7 +39,7 @@ jobs:
           run: echo "timestamp="date +%s >> state.txt
 
         - name: Add test.txt file
-          run: git add test.txt
+          run: git add state.txt
 
         - name: Commit changes
           run: git commit --message "add text to test.txt"
