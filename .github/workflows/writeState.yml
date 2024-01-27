@@ -1,0 +1,42 @@
+# Simple workflow for deploying static content to GitHub Pages
+name: Write state
+
+on:
+  workflow_call:
+    inputs: 
+      stage:
+        required: true
+        type: string
+
+jobs:
+  # Single deploy job since we're just deploying
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+        - name: Check out code
+          uses: actions/checkout@v2.5.0
+          with:
+            ref: test
+
+        - name: Initialize mandatory git config
+          run: |
+           git config user.name "GitHub Actions"
+           git config user.email noreply@github.com
+
+        - name: Remove file
+          run: rm state.txt
+          
+        - name: Write stage to file
+          run: echo "stage=${{ inputs.environment }}" >> state.txt
+          
+        - name: Write timestamp to file
+          run: echo "timestamp="date +%s >> state.txt
+
+        - name: Add test.txt file
+          run: git add test.txt
+
+        - name: Commit changes
+          run: git commit --message "add text to test.txt"
+
+        - name: Push branch
+          run: git push origin test
