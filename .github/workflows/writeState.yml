@@ -30,7 +30,7 @@ jobs:
            git config user.email noreply@github.com
 
         - name: Remove file
-          run: rm state.txt
+          run: rm -f state.txt
           
         - name: Write stage to file
           run: echo "stage=${{ inputs.environment }}" >> state.txt
