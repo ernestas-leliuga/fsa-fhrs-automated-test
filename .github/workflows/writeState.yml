@@ -2,6 +2,12 @@
 name: Write state
 
 on:
+  workflow_dispatch:
+    inputs:
+      stage:
+        description: 'Stage name??'
+        required: true
+        type: text
   workflow_call:
     inputs: 
       stage:
