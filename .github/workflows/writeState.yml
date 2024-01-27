@@ -32,10 +32,10 @@ jobs:
           run: rm -f state.txt
           
         - name: Write stage to file
-          run: echo "stage=${{ inputs.state }}" >> state.txt
+          run: echo "stage={inputs.state}" >> state.txt
           
         - name: Write timestamp to file
-          run: echo "timestamp="date +%s >> state.txt
+          run: echo "timestamp=$(date +%s)" >> state.txt
 
         - name: Add test.txt file
           run: git add state.txt
