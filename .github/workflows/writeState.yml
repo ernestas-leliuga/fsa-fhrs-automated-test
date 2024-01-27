@@ -4,13 +4,20 @@ name: Write state
 on:
   workflow_dispatch:
     inputs:
-      stage:
-        description: 'Stage name?'
+      key:
+        description: 'Key without space'
+        required: true
+        type: text
+      value:
+        description: 'Value without space'
         required: true
         type: text
   workflow_call:
     inputs: 
-      stage:
+      key:
+        required: true
+        type: string
+      value:
         required: true
         type: string
 
@@ -29,19 +36,19 @@ jobs:
            git config user.email noreply@github.com
 
         - name: Remove file
-          run: rm -f state.txt
+          run: rm -f ${{ inputs.key }}.txt
           
         - name: Write stage to file
-          run: echo "stage=${{ inputs.stage }}" >> state.txt
+          run: echo "${{ inputs.key }}=${{ inputs.value }}" >> ${{ inputs.key }}.txt
           
         - name: Write timestamp to file
-          run: echo "timestamp=$(date +%s)" >> state.txt
+          run: echo "${{ inputs.key }}_timestamp=$(date +%s)" >> ${{ inputs.key }}.txt
 
-        - name: Add test.txt file
-          run: git add state.txt
+        - name: Add file
+          run: git add ${{ inputs.key }}.txt
 
         - name: Commit changes
-          run: git commit --message "add text to test.txt"
+          run: git commit --message "add value to ${{ inputs.key }}.txt"
 
         - name: Push branch
           run: git push origin state
