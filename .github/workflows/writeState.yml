@@ -5,7 +5,7 @@ on:
   workflow_dispatch:
     inputs:
       stage:
-        description: 'Stage name??'
+        description: 'Stage name?'
         required: true
         type: text
   workflow_call:
@@ -15,14 +15,13 @@ on:
         type: string
 
 jobs:
-  # Single deploy job since we're just deploying
-  deploy:
+  update_state:
     runs-on: ubuntu-latest
     steps:
         - name: Check out code
           uses: actions/checkout@v2.5.0
           with:
-            ref: test
+            ref: state
 
         - name: Initialize mandatory git config
           run: |
@@ -45,4 +44,4 @@ jobs:
           run: git commit --message "add text to test.txt"
 
         - name: Push branch
-          run: git push origin test
+          run: git push origin state
