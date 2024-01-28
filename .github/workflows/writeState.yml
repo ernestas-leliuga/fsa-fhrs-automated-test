@@ -48,16 +48,14 @@ jobs:
           run: echo "${{ inputs.key }}_timestamp=$(date +%s)" >> ${{ inputs.key }}.txt
 
         - name: Add file
+          run: git add ${{ inputs.key }}.txt
+
+        - name: Commit and push changes
           run: |
-            git checkout --orphan tmp-state
-            git add ${{ inputs.key }}.txt
-            git commit -m  "add value to ${{ inputs.key }}.txt"
-            git branch -D state
-            git branch -m state
-            git push -f origin state
+            if ! git commit --message "add value to ${{ inputs.key }}.txt"
+            then
+              echo "state branch didn't change"
+            else
+              # Push new commit
+              git push origin state
 
-        # - name: Commit changes
-        #   run: git commit --message "add value to ${{ inputs.key }}.txt"
-
-        # - name: Push branch
-        #   run: git push origin state
