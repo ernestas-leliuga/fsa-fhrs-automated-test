@@ -58,4 +58,5 @@ jobs:
             else
               # Push new commit
               git push origin state
+            fi
 
