@@ -1,6 +1,4 @@
-# Simple workflow for deploying static content to GitHub Pages
 name: Set state key=value
-
 on:
   workflow_dispatch:
     inputs:
