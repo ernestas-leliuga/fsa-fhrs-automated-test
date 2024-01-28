@@ -34,7 +34,7 @@ jobs:
           run: |
             if ! git config --get-regexp user.
             then
-              git config user.name "GitHub Actions"
+              git config user.name "GitHub Actions state workflow"
               git config user.email noreply@github.com
             fi
 
