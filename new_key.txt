@@ -1,2 +1,0 @@
-new_key=new_value
-new_key_timestamp=1706438939
