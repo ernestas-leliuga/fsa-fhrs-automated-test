@@ -1,0 +1,62 @@
+# Simple workflow for deploying static content to GitHub Pages
+name: Write state
+
+on:
+  workflow_dispatch:
+    inputs:
+      key:
+        description: 'Key without space'
+        required: true
+        type: text
+      value:
+        description: 'Value without space'
+        required: true
+        type: text
+  workflow_call:
+    inputs: 
+      key:
+        required: true
+        type: string
+      value:
+        required: true
+        type: string
+
+jobs:
+  update_state:
+    runs-on: ubuntu-latest
+    steps:
+        - name: Check out code
+          uses: actions/checkout@v2.5.0
+          with:
+            ref: state
+
+        - name: Initialize mandatory git config
+          run: |
+            if ! git config --get-regexp user.
+            then
+              git config user.name "GitHub Actions state workflow"
+              git config user.email noreply@github.com
+            fi
+
+        - name: Remove file
+          run: rm -f ${{ inputs.key }}.txt
+          
+        - name: Write key=value to file
+          run: echo "${{ inputs.key }}=${{ inputs.value }}" >> ${{ inputs.key }}.txt
+          
+        - name: Write timestamp to file
+          run: echo "${{ inputs.key }}_timestamp=$(date +%s)" >> ${{ inputs.key }}.txt
+
+        - name: Add file
+          run: git add ${{ inputs.key }}.txt
+
+        - name: Commit and push changes
+          run: |
+            if ! git commit --message "add value to ${{ inputs.key }}.txt"
+            then
+              echo "state branch didn't change"
+            else
+              # Push new commit
+              git push origin state
+            fi
+
