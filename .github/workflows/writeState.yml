@@ -39,13 +39,7 @@ jobs:
             fi
 
         - name: Remove file
-          run: |
-            if ! grep -Fxq "test" .gitignore
-            then
-              echo "Please make sure .test is present in .gitignore"
-              exit 1
-            fi
-            rm -f ${{ inputs.key }}.txt
+          run: rm -f ${{ inputs.key }}.txt
           
         - name: Write key=value to file
           run: echo "${{ inputs.key }}=${{ inputs.value }}" >> ${{ inputs.key }}.txt
@@ -54,10 +48,16 @@ jobs:
           run: echo "${{ inputs.key }}_timestamp=$(date +%s)" >> ${{ inputs.key }}.txt
 
         - name: Add file
-          run: git add ${{ inputs.key }}.txt
+          run: |
+            git checkout --orphan tmp-state
+            git add ${{ inputs.key }}.txt
+            git commit -m  "add value to ${{ inputs.key }}.txt"
+            git branch -D state
+            git branch -m state
+            git push -f origin state
 
-        - name: Commit changes
-          run: git commit --message "add value to ${{ inputs.key }}.txt"
+        # - name: Commit changes
+        #   run: git commit --message "add value to ${{ inputs.key }}.txt"
 
-        - name: Push branch
-          run: git push origin state
+        # - name: Push branch
+        #   run: git push origin state
