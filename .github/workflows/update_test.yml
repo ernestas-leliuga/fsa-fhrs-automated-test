@@ -11,22 +11,6 @@ jobs:
     uses: ./.github/workflows/getState.yml
     with:
       key: test
-      
-  start_stage:
-    if: needs.get_state.outputs.value == ''
-    needs: get_state
-    runs-on: ubuntu-latest
-    steps:
-    - name: Start
-      run: echo Start
-
-  start_stage_update:
-    needs: start_stage
-    uses: ./.github/workflows/setState.yml
-    with:
-      key: test
-      value: stage1
-
 
   stage1:
     if: needs.get_state.outputs.value == 'stage1'
