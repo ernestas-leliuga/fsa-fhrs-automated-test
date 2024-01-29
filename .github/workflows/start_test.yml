@@ -1,0 +1,19 @@
+name: Start test
+
+on:
+  workflow_dispatch:
+
+jobs:
+    
+  start_stage:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Start
+      run: echo Start
+
+  start_stage_update:
+    needs: start_stage
+    uses: ./.github/workflows/setState.yml
+    with:
+      key: test
+      value: stage1
