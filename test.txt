@@ -1,2 +1,2 @@
-value=stage1
-timestamp=1706524992
+value=stage2
+timestamp=1706525760
