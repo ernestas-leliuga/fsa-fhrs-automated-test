@@ -35,7 +35,8 @@ jobs:
         - name: Initialize mandatory git config
           id: output_step
           run: |
-           cat ${{ inputs.key }}.txt >> $GITHUB_OUTPUT
+            echo cat ${{ inputs.key }}.txt
+            cat ${{ inputs.key }}.txt >> $GITHUB_OUTPUT
 
             
         # - name: Initialize mandatory git config
