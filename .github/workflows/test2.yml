@@ -9,12 +9,13 @@ on:
 
 jobs:
   # Single deploy job since we're just deploying
-  deploy:
-    environment:
-      name: github-pages
+  get_state:
+    uses: ./.github/workflows/getState.yml
+    with:
+      key: new_key
+
+  print_state:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
-    - uses: jorgebg/stateful-action@v0.1
     - name: Test Run
-      run: echo $(date)\n >> .state/data.txt
+      run: echo ${{ needs.get_state.outputs }}
