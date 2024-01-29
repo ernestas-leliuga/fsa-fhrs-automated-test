@@ -9,7 +9,7 @@ jobs:
   get_state:
     uses: ./.github/workflows/getState.yml
     with:
-      key: test1
+      key: test
       
   start_stage:
     if: needs.get_state.outputs.value == ''
