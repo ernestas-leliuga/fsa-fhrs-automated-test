@@ -12,10 +12,15 @@ on:
       key:
         required: true
         type: string
+    outputs:
+      value:
+        value: ${{ jobs.update_state.outputs.output }}
 
 jobs:
   update_state:
     runs-on: ubuntu-latest
+    outputs:
+      output: ${{ steps.output.outputs }}
     steps:
         - name: Check out code
           uses: actions/checkout@v2.5.0
@@ -23,6 +28,7 @@ jobs:
             ref: state
 
         - name: Initialize mandatory git config
+          id: output
           run: |
            cat ${{ inputs.key }}.txt >> $GITHUB_OUTPUT
 
