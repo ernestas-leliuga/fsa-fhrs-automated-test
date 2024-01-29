@@ -39,11 +39,11 @@ jobs:
         - name: Remove file
           run: rm -f ${{ inputs.key }}.txt
           
-        - name: Write key=value to file
-          run: echo "${{ inputs.key }}=${{ inputs.value }}" >> ${{ inputs.key }}.txt
+        - name: Write value to file
+          run: echo "value=${{ inputs.value }}" >> ${{ inputs.key }}.txt
           
         - name: Write timestamp to file
-          run: echo "${{ inputs.key }}_timestamp=$(date +%s)" >> ${{ inputs.key }}.txt
+          run: echo "timestamp=$(date +%s)" >> ${{ inputs.key }}.txt
 
         - name: Add file
           run: git add ${{ inputs.key }}.txt
