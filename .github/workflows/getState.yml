@@ -13,10 +13,10 @@ on:
         required: true
         type: string
     outputs:
-      key_value:
+      value:
         description: "Value output"
         value: ${{ jobs.update_state.outputs.value }}
-      key_value_timestamp:
+      timestamp:
         description: "Timestamp output"
         value: ${{ jobs.update_state.outputs.timestamp }}
 
@@ -35,7 +35,6 @@ jobs:
         - name: Initialize mandatory git config
           id: output_step
           run: |
-            echo $(cat ${{ inputs.key }}.txt)
             cat ${{ inputs.key }}.txt >> $GITHUB_OUTPUT
 
             
