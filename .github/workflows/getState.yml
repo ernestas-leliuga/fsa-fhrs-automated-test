@@ -1,4 +1,4 @@
-name: Get state key=value
+name: Get state
 
 on:
   workflow_dispatch:
@@ -14,18 +14,18 @@ on:
         type: string
     outputs:
       key_value:
-        description: "Key value output"
-        value: ${{ jobs.update_state.outputs.key_value }}
+        description: "Value output"
+        value: ${{ jobs.update_state.outputs.value }}
       key_value_timestamp:
-        description: "Key value timestamp output"
-        value: ${{ jobs.update_state.outputs.key_value_timestamp }}
+        description: "Timestamp output"
+        value: ${{ jobs.update_state.outputs.timestamp }}
 
 jobs:
   update_state:
     runs-on: ubuntu-latest
     outputs:
-      key_value: ${{ steps.output_step.outputs[inputs.key] }}
-      key_value_timestamp: ${{ steps.output_step.outputs.new_key_timestamp }}
+      value: ${{ steps.output_step.outputs.value }}
+      timestamp: ${{ steps.output_step.outputs.timestamp }}
     steps:
         - name: Check out code
           uses: actions/checkout@v2.5.0
