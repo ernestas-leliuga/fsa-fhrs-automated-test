@@ -24,8 +24,7 @@ jobs:
 
         - name: Initialize mandatory git config
           run: |
-           source ${{ inputs.key }}.txt
-           echo "$${{ inputs.key }}"
+           cat ${{ inputs.key }}.txt >> $GITHUB_OUTPUT
 
             
         # - name: Initialize mandatory git config
