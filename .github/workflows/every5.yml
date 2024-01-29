@@ -1,0 +1,75 @@
+name: Update data
+
+on:
+  schedule:
+    - cron: "*/5 * * * *"
+
+jobs:
+
+  get_state:
+    uses: ./.github/workflows/getState.yml
+    with:
+      key: test1
+      
+  start_stage:
+    if: needs.get_state.outputs.value == ''
+    runs-on: ubuntu-latest
+    steps:
+    - name: Start
+      run: echo Start
+
+  start_stage_update:
+    needs: start_stage
+    uses: ./.github/workflows/setState.yml
+    with:
+      key: test
+      value: stage1
+
+
+  stage1:
+    if: needs.get_state.outputs.value == 'stage1'
+    runs-on: ubuntu-latest
+    steps:
+    - name: stage1
+      run: echo stage1
+
+  
+  stage1_update:
+    needs: stage1
+    uses: ./.github/workflows/setState.yml
+    with:
+      key: test
+      value: stage2
+
+      
+  stage2:
+    if: needs.get_state.outputs.value == 'stage2'
+    runs-on: ubuntu-latest
+    steps:
+    - name: stage2
+      run: echo stage2
+
+  
+  stage2_update:
+    needs: stage2
+    uses: ./.github/workflows/setState.yml
+    with:
+      key: test
+      value: stage3
+      
+  stage3:
+    if: needs.get_state.outputs.value == 'stage3'
+    runs-on: ubuntu-latest
+    steps:
+    - name: stage3
+      run: echo stage3
+
+  
+  stage3_update:
+    needs: stage2
+    uses: ./.github/workflows/setState.yml
+    with:
+      key: test
+      value: completed
+    
+    
