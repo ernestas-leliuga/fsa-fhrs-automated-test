@@ -18,4 +18,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Test Run
-      run: echo ${{ needs.get_state.outputs }}
+      run: echo ${{ needs.get_state.outputs.new_key }}
