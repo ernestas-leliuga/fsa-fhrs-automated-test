@@ -12,7 +12,7 @@ jobs:
   get_state:
     uses: ./.github/workflows/getState.yml
     with:
-      key: new_key
+      key: test1
 
   print_state:
     runs-on: ubuntu-latest
