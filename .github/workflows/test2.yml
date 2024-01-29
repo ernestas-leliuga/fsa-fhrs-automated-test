@@ -19,4 +19,4 @@ jobs:
     needs: get_state
     steps:
     - name: Test Run
-      run: echo ${{ needs.get_state.outputs.new_key }}
+      run: echo ${{ needs.get_state.outputs.output }}
