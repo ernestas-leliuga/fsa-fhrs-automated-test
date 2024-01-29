@@ -13,11 +13,11 @@ on:
         required: true
         type: string
     outputs:
-      ${{ inputs.key }}:
-        description: "${{ inputs.key }} output"
+      key_value:
+        description: "Key value output"
         value: ${{ jobs.update_state.outputs.key_value }}
-      ${{ inputs.key }}_timestamp:
-        description: "${{ inputs.key }}_timestamp output"
+      key_value_timestamp:
+        description: "Key value timestamp output"
         value: ${{ jobs.update_state.outputs.key_value_timestamp }}
 
 jobs:
