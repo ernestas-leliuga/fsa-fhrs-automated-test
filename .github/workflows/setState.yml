@@ -1,4 +1,4 @@
-name: Set state key=value
+name: Set state
 on:
   workflow_dispatch:
     inputs:
