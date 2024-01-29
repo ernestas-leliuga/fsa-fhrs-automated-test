@@ -13,14 +13,19 @@ on:
         required: true
         type: string
     outputs:
-      value:
-        value: ${{ jobs.update_state.outputs.output }}
+      ${{ inputs.key }}:
+        description: "${{ inputs.key }} output"
+        value: ${{ jobs.update_state.outputs.key_value }}
+      ${{ inputs.key }}_timestamp:
+        description: "${{ inputs.key }}_timestamp output"
+        value: ${{ jobs.update_state.outputs.key_value_timestamp }}
 
 jobs:
   update_state:
     runs-on: ubuntu-latest
     outputs:
-      output: ${{ steps.output.outputs }}
+      key_value: ${{ steps.output_step.outputs[inputs.key] }}
+      key_value_timestamp: ${{ steps.output_step.outputs[inputs.key+'_timestamp'] }}
     steps:
         - name: Check out code
           uses: actions/checkout@v2.5.0
@@ -28,7 +33,7 @@ jobs:
             ref: state
 
         - name: Initialize mandatory git config
-          id: output
+          id: output_step
           run: |
            cat ${{ inputs.key }}.txt >> $GITHUB_OUTPUT
 
