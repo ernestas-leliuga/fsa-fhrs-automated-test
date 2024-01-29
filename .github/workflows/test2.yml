@@ -20,5 +20,5 @@ jobs:
     steps:
     - name: Test Run
       run: | 
-        echo ${{ needs.get_state.outputs.key_value }}
-        echo ${{ needs.get_state.outputs.key_value_timestamp }}
+        echo ${{ needs.get_state.outputs.value }}
+        echo ${{ needs.get_state.outputs.timestamp }}
