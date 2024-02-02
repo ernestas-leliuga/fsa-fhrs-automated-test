@@ -29,7 +29,7 @@ jobs:
             cron=$(date -d "now + 5 hours" "+%M %H * * *")
             sed -i 's/{{cron}}/$cron/g' ./.github/workflows/123.yml
           env:
-            GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+            GH_TOKEN: ${{ secrets.WORKFLOW_TOKEN }}
             
 
         - name: Add test.txt file
