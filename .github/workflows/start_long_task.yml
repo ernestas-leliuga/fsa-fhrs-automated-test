@@ -16,7 +16,6 @@ jobs:
           uses: actions/checkout@v2.5.0
           with:
             ref: main
-            token: ${{ secrets.GITHUB_TOKEN }}
 
         - name: Initialize mandatory git config
           run: |
@@ -24,6 +23,8 @@ jobs:
            git config user.email noreply@github.com
            
         - name: Write to file
+          env:
+            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           run: |
             cp ./.github/workflows/templates/runAt.yml ./.github/workflows/123.yml
             sed -i 's|{{workflow}}|./.github/workflows/e2e1.yml|g' ./.github/workflows/123.yml
