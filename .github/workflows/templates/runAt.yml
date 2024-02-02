@@ -33,5 +33,5 @@ jobs:
           run: git commit --message "{{workflow}} successfull run"
 
         - name: Push branch
-          run: git push origin master
+          run: git push origin main
 
