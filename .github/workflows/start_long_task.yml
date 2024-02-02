@@ -23,13 +23,13 @@ jobs:
            git config user.email noreply@github.com
            
         - name: Write to file
-          env:
-            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           run: |
             cp ./.github/workflows/templates/runAt.yml ./.github/workflows/123.yml
             sed -i 's|{{workflow}}|./.github/workflows/e2e1.yml|g' ./.github/workflows/123.yml
             cron=$(date -d "now + 5 hours" "+%M %H * * *")
             sed -i 's/{{cron}}/$cron/g' ./.github/workflows/123.yml
+          env:
+            GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
             
 
         - name: Add test.txt file
