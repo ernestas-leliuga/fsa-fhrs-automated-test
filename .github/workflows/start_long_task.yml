@@ -28,8 +28,7 @@ jobs:
             sed -i 's|{{workflow}}|./.github/workflows/e2e1.yml|g' ./.github/workflows/123.yml
             cron=$(date -d "now + 5 hours" "+%M %H * * *")
             sed -i 's/{{cron}}/$cron/g' ./.github/workflows/123.yml
-          env:
-            GH_TOKEN: ${{ secrets.WORKFLOW_TOKEN }}
+          
             
 
         - name: Add test.txt file
@@ -40,3 +39,5 @@ jobs:
 
         - name: Push branch
           run: git push origin main
+          env:
+            GH_TOKEN: ${{ secrets.WORKFLOW_TOKEN }}
