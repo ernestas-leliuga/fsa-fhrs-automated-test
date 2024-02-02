@@ -26,9 +26,9 @@ jobs:
         - name: Write to file
           run: |
             cp ./.github/workflows/templates/runAt.yml ./.github/workflows/123.yml
-            sed -i 's|{{workflow}}|./.github/workflows/e2e1.yml|g' ./.github/workflows/123.yml
+            sed -i "s|{{workflow}}|./.github/workflows/e2e1.yml|g" ./.github/workflows/123.yml
             cron=$(date -d "now + 5 hours" "+%M %H * * *")
-            sed -i 's/{{cron}}/$cron/g' ./.github/workflows/123.yml
+            sed -i "s/{{cron}}/$cron/g" ./.github/workflows/123.yml
           
             
 
