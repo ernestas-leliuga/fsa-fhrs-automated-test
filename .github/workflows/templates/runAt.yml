@@ -1,0 +1,10 @@
+name: Run {{workflow}}
+
+on:
+  schedule:
+    - cron: "{{cron}}"
+
+jobs:
+  run_wo:
+    uses: {{workflow}}
+
