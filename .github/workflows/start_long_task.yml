@@ -17,10 +17,10 @@ jobs:
           with:
             ref: main
 
-        - name: Initialize mandatory git config
-          run: |
-           git config user.name "GitHub Actions"
-           git config user.email noreply@github.com
+        # - name: Initialize mandatory git config
+        #   run: |
+        #    git config user.name "GitHub Actions"
+        #    git config user.email noreply@github.com
            
         - name: Write to file
           run: |
