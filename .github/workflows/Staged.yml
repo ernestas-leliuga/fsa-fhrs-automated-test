@@ -11,7 +11,7 @@ on:
 jobs:
   
   stage1:
-    if: env.stage == 1
+    if: ${{ env.stage == 1 }}
     runs-on: ubuntu-latest
     steps:
     - name: Stage 1
