@@ -29,15 +29,20 @@ jobs:
       with:
         ref: main
         token: ${{ secrets.WORKFLOW_TOKEN }}
+
+    - name: Initialize mandatory git config
+      run: |
+        git config user.name "GitHub Actions"
+        git config user.email noreply@github.com
         
     - name: Stage 1
       run: echo "Hello from Stage 1"
       
     - name: Advance to Stage 2
       run: |
-        wget https://github.com/mikefarah/yq/releases/latest/download/yq_linux_amd64 -O /usr/bin/yq &&\
-        chmod +x /usr/bin/yq
-        yq -i '.env.stage = 2' .github/workflows/Staged.yml
+        wget https://github.com/mikefarah/yq/releases/latest/download/yq_linux_amd64 -O ./yq &&\
+        chmod +x ./yq
+        ./yq -i '.env.stage = 2' .github/workflows/Staged.yml
         
     - name: Add test.txt file
       run: git add -A
