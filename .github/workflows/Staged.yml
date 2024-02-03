@@ -1,6 +1,6 @@
 name: Staged workflow
 env:
-  stage: 4
+  stage: 1
 on:
   workflow_dispatch:
 jobs:
