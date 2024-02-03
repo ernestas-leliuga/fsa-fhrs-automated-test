@@ -9,9 +9,19 @@ on:
   workflow_dispatch:
 
 jobs:
+  set_env:
+    name: Set Environment variable 
+    runs-on: ubuntu-latest         
+    outputs:
+      stage: ${{ steps.init.outputs.stage }}   
+    steps:        
+      - name: Environment variables to output 
+        id: init
+        run: |
+          echo "stage=${{ env.stage }}" >> $GITHUB_OUTPUT
   
   stage1:
-    if: ${{ env.stage == 1 }}
+    if: needs.set_env.outputs.stage == 1
     runs-on: ubuntu-latest
     steps:
     - name: Stage 1
