@@ -51,7 +51,7 @@ jobs:
       run: git commit --message "Advance to Stage 2"
 
     - name: Push branch
-      run: git push origin mai
+      run: git push origin main
 
   stage2:
     needs: set_env
