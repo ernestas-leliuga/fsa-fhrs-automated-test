@@ -28,21 +28,21 @@ jobs:
       run: echo "Hello from Stage 1"
 
   stage2:
-    if: env.stage == 2
+    if: needs.set_env.outputs.stage == 2
     runs-on: ubuntu-latest
     steps:
     - name: Stage 2
       run: echo "Hello from Stage 2"
 
   stage3:
-    if: env.stage == 3
+    if: needs.set_env.outputs.stage == 3
     runs-on: ubuntu-latest
     steps:
     - name: Stage 3
       run: echo "Hello from Stage 3"
 
   stage4:
-    if: env.stage == 4
+    if: needs.set_env.outputs.stage == 4
     runs-on: ubuntu-latest
     steps:
     - name: Stage 4
