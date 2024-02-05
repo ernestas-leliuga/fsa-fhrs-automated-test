@@ -1,4 +1,4 @@
-name: Staged workflow (Stage 1)
+name: Staged workflow
 env:
   stage: 1
 on:
@@ -35,7 +35,7 @@ jobs:
           wget https://github.com/mikefarah/yq/releases/latest/download/yq_linux_amd64 -O ./yq &&\
           chmod +x ./yq
           export RUN_AT_CRON=$(date -d "now + 5 hours" "+%M %H * * *")
-          ./yq -i '.name = "Staged workflow (Stage 2)" | .env.stage = 2 | .on.schedule[0].cron = strenv(RUN_AT_CRON)' .github/workflows/Staged.yml
+          ./yq -i '.run-name = "Staged workflow (Stage 2)" | .env.stage = 2 | .on.schedule[0].cron = strenv(RUN_AT_CRON)' .github/workflows/Staged.yml
       - name: Add test.txt file
         run: git add -A
       - name: Commit changes
@@ -63,7 +63,7 @@ jobs:
           wget https://github.com/mikefarah/yq/releases/latest/download/yq_linux_amd64 -O ./yq &&\
           chmod +x ./yq
           export RUN_AT_CRON=$(date -d "now + 5 hours" "+%M %H * * *")
-          ./yq -i '.name = "Staged workflow (Stage 3)" | .env.stage = 3 | .on.schedule[0].cron = strenv(RUN_AT_CRON)' .github/workflows/Staged.yml
+          ./yq -i '.run-name = "Staged workflow (Stage 3)" | .env.stage = 3 | .on.schedule[0].cron = strenv(RUN_AT_CRON)' .github/workflows/Staged.yml
       - name: Add test.txt file
         run: git add -A
       - name: Commit changes
@@ -91,7 +91,7 @@ jobs:
           wget https://github.com/mikefarah/yq/releases/latest/download/yq_linux_amd64 -O ./yq &&\
           chmod +x ./yq
           export RUN_AT_CRON=$(date -d "now + 5 hours" "+%M %H * * *")
-          ./yq -i '.name = "Staged workflow (Stage 4)" | .env.stage = 4 | .on.schedule[0].cron = strenv(RUN_AT_CRON)' .github/workflows/Staged.yml
+          ./yq -i '.run-name = "Staged workflow (Stage 4)" | .env.stage = 4 | .on.schedule[0].cron = strenv(RUN_AT_CRON)' .github/workflows/Staged.yml
       - name: Add test.txt file
         run: git add -A
       - name: Commit changes
@@ -118,7 +118,7 @@ jobs:
         run: |
           wget https://github.com/mikefarah/yq/releases/latest/download/yq_linux_amd64 -O ./yq &&\
           chmod +x ./yq
-          ./yq -i '.name = "Staged workflow (Stage 1)" | .env.stage = 1 | del(.on.schedule)' .github/workflows/Staged.yml
+          ./yq -i '.run-name = "Staged workflow (Stage 1)" | .env.stage = 1 | del(.on.schedule)' .github/workflows/Staged.yml
       - name: Add test.txt file
         run: git add -A
       - name: Commit changes
