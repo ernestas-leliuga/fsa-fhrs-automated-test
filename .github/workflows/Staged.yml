@@ -34,7 +34,8 @@ jobs:
         run: |
           wget https://github.com/mikefarah/yq/releases/latest/download/yq_linux_amd64 -O ./yq &&\
           chmod +x ./yq
-          ./yq -i '.env.stage = 2' .github/workflows/Staged.yml
+          cron=$(date -d "now + 5 hours" "+%M %H * * *")
+          ./yq -i '.env.stage = 2 | .on.schedule.cron = strenv(cron)' .github/workflows/Staged.yml
       - name: Add test.txt file
         run: git add -A
       - name: Commit changes
