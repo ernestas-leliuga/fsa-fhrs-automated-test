@@ -1,10 +1,8 @@
 name: Staged workflow
 env:
-  stage: 2
+  stage: 1
 on:
   workflow_dispatch:
-  schedule:
-    cron: ""
 jobs:
   set_env:
     name: Set Environment variable
@@ -36,8 +34,8 @@ jobs:
         run: |
           wget https://github.com/mikefarah/yq/releases/latest/download/yq_linux_amd64 -O ./yq &&\
           chmod +x ./yq
-          RUN_AT_CRON=$(date -d "now + 5 hours" "+%M %H * * *")
-          ./yq -i '.env.stage = 2 | .on.schedule.cron = strenv(RUN_AT_CRON)' .github/workflows/Staged.yml
+          run_at_cron=$(date -d "now + 5 hours" "+%M %H * * *")
+          ./yq -i '.env.stage = 2 | .on.schedule[0].cron = ${run_at_cron})' .github/workflows/Staged.yml
       - name: Add test.txt file
         run: git add -A
       - name: Commit changes
