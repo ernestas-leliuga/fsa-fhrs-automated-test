@@ -1,8 +1,10 @@
 name: Staged workflow
 env:
-  stage: 1
+  stage: 2
 on:
   workflow_dispatch:
+  schedule:
+    - cron: ""
 jobs:
   set_env:
     name: Set Environment variable
