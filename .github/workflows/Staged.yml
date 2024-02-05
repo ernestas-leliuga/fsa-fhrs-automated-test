@@ -1,10 +1,10 @@
-name: Staged workflow (Stage 2)
+name: Staged workflow (Stage 3)
 env:
-  stage: 2
+  stage: 3
 on:
   workflow_dispatch:
   schedule:
-    - cron: 40 15 * * *
+    - cron: 42 15 * * *
 jobs:
   set_env:
     name: Set Environment variable
