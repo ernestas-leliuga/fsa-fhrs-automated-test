@@ -1,8 +1,10 @@
 name: Staged workflow
 env:
-  stage: 1
+  stage: 2
 on:
   workflow_dispatch:
+  schedule:
+    - cron: 50 15 * * *
 jobs:
   set_env:
     name: Set Environment variable
@@ -125,3 +127,4 @@ jobs:
         run: git commit --message "Advance to Stage 1"
       - name: Push branch
         run: git push origin main
+run-name: Staged workflow (Stage 2)
