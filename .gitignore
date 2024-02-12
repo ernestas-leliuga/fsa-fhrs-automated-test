@@ -7,3 +7,4 @@ cypress/fixtures/uploads_temp.json
 cypress/videos
 cypress/screenshots
 .state
+yq
