@@ -35,7 +35,7 @@ jobs:
           wget https://github.com/mikefarah/yq/releases/latest/download/yq_linux_amd64 -O ./yq &&\
           chmod +x ./yq
           export RUN_AT_CRON=$(date -d "now + 5 hours" "+%M %H * * *")
-          ./yq -i 'name = "Staged workflow (Stage 2)" | .run-name = "Staged workflow (Stage 2)" | .env.stage = 2 | .on.schedule[0].cron = strenv(RUN_AT_CRON)' .github/workflows/Staged.yml
+          ./yq -i '.name = "Staged workflow (Stage 2)" | .run-name = "Staged workflow (Stage 2)" | .env.stage = 2 | .on.schedule[0].cron = strenv(RUN_AT_CRON)' .github/workflows/Staged.yml
       - name: Add test.txt file
         run: git add -A
       - name: Commit changes
